@@ -10,21 +10,22 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @AllArgsConstructor
-@Table(name="TicketRefund")
-public class TicketRefund {
-
+@Table(name="ProductRefund")
+public class ProductRefund {
 
     @Id
-    @Column(name="refund_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="refund_id")
     private int refund_id;
 
     @Column(name="order_id")
     private int order_id;
 
     @Column(name="refund_date")
-    private LocalDateTime refund_data;
+    private LocalDateTime refund_date;
 
     @Column(name="status")
     private String status;
+
+
 }
