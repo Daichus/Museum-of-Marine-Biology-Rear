@@ -23,7 +23,7 @@ public class TicketRefund {
     private int order_id;
 
     @Column(name="refund_date")
-    private LocalDateTime refund_data;
+    private LocalDateTime refund_date;
 
     @Column(name="status")
     private String status;
