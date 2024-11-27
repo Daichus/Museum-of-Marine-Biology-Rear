@@ -15,8 +15,8 @@ public class TicketOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_id")
-    private int order_id;
+    @Column(name="ticket_order_id")
+    private int ticket_order_id;
 
     @Column(name="user_id")
     private int user_id;
