@@ -70,16 +70,16 @@ public class MarineSpeciesService {
     Path uploadPath = Paths.get(uploadDir);
     System.out.println("上傳路徑: " + uploadPath.toAbsolutePath());
 
-    if( !Files.exists(uploadPath) ) {
+    if( !Files.exists(uploadPath) ) { //檢查這個路徑是否存在
       System.out.println("建立目錄: " + uploadPath);
-      Files.createDirectories(uploadPath);
+      Files.createDirectories(uploadPath); //如果路徑不存在，就建立目錄
     }
 
     //生成唯一的檔案名稱
-    String originalFilename = file.getOriginalFilename();
-    String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+    String originalFilename = file.getOriginalFilename(); //取得上傳檔案的原始檔名
+    String fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".")); //從那個點開始擷取到字串結尾，得到副檔名
     String newFileName = "marine_" + id + "_" + System.currentTimeMillis() + fileExtension;
-    Path filePath = uploadPath.resolve(newFileName);
+    Path filePath = uploadPath.resolve(newFileName);  //resolve() 是用來組合路徑的方法
     System.out.println("完整檔案路徑: " + filePath.toAbsolutePath());
 
     //保存檔案
