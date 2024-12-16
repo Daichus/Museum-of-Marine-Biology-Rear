@@ -52,18 +52,12 @@ public class ChatController {
         String line;
         while ((line = br.readLine()) != null) {
           // 使用問題和答案的分隔來分割每行
-          if (line.contains("**問題**") || line.trim().isEmpty()) {
-            continue; // 跳過標題行和空行
-          }
-
-          if (line.startsWith("**")) {
-            String question = line.replace("**", "").trim();
-            // 讀取下一行作為答案
-            String answer = br.readLine();
-            if (answer != null) {
-              sb.append("Q: ").append(question).append("\n");
-              sb.append("A: ").append(answer).append("\n\n");
-            }
+          String[] parts = line.split(",", 2); // 用逗號分隔，最多分成兩部分
+          if (parts.length == 2) {
+            String question = parts[0].trim();
+            String answer = parts[1].trim();
+            sb.append("Q: ").append(question).append("\n");
+            sb.append("A: ").append(answer).append("\n\n");
           }
         }
       }
