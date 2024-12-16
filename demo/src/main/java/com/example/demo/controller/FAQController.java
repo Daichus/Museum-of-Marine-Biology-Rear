@@ -14,7 +14,7 @@ public class FAQController {
   @Autowired
   FAQService faqService;
 
-  @GetMapping("/get")
+  @GetMapping("/getAll")
   public List<FAQ> getAllFAQ() {
     return faqService.getAllFAQ();
   }
