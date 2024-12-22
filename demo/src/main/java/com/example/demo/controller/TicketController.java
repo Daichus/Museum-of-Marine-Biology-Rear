@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.model.TicketOrder;
-import com.example.demo.model.dto.OrderDTO;
+import com.example.demo.model.dto.TicketOrderDTO;
 import com.example.demo.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ public class TicketController {
 
 
      @PostMapping("/orderTicket")
-    public ResponseEntity<?> orderTicket (@RequestBody OrderDTO dto) {
+    public ResponseEntity<?> orderTicket (@RequestBody TicketOrderDTO dto) {
          return ticketService.createTicketOrder(dto);
      }
 }

@@ -6,14 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class OrderDTO {
+public class TicketOrderDTO {
 
     private String id_number;
 

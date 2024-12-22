@@ -4,26 +4,41 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name="ProductOrder")
 public class ProductOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_id")
-    private int order_id;
+    @Column(name="product_order_id")
+    private int product_order_id;
 
-    @Column(name="user_id")
-    private int user_id;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name= "id_number")
+    private String id_number;
+
+    @Column(name="name")
+    private String name;
+
+    @Column(name="phone")
+    private String phone;
 
     @Column(name="order_time")
     private LocalDateTime order_time;
+
+    @OneToMany(mappedBy = "productOrder" , cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderProducts> orderProducts;
 
 
 

@@ -4,7 +4,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.OrderTickets;
 import com.example.demo.model.TicketOrder;
-import com.example.demo.model.dto.OrderDTO;
+import com.example.demo.model.dto.TicketOrderDTO;
 
 import com.example.demo.repository.ticket.OrderTicketsRepository;
 import com.example.demo.repository.ticket.TicketOrderRepository;
@@ -25,7 +25,7 @@ public class TicketService {
     @Autowired
     OrderTicketsRepository orderTicketsRepository;
 
-    public ResponseEntity<?> createTicketOrder (OrderDTO dto){
+    public ResponseEntity<?> createTicketOrder (TicketOrderDTO dto){
         TicketOrder ticketOrder = new TicketOrder();
         ticketOrder.setEmail(dto.getEmail());
         ticketOrder.setId_number(dto.getId_number());
