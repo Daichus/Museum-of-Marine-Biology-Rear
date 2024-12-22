@@ -31,6 +31,17 @@ public class ProductService {
             if (cardInfo == null || cardInfo.getCardNumber() == null || cardInfo.getCvv() == null || cardInfo.getExpiryDate() == null) {
                 return ResponseEntity.badRequest().body("信用卡資訊不完整！");
             }
+            String cardNumber = cardInfo.getCardNumber().replaceAll("\\s", "");
+            if (!cardNumber.matches("^\\d{16}$")) {
+                return ResponseEntity.badRequest().body("信用卡號格式不正確！應為16位數字且不包含空格。");
+            }
+            if (!cardInfo.getCvv().matches("^\\d{3}$")) {
+                return ResponseEntity.badRequest().body("CVV 格式不正確！應為3位數字。");
+            }
+            if (!cardInfo.getExpiryDate().matches("^(0[1-9]|1[0-2])\\/\\d{2}$")) {
+                return ResponseEntity.badRequest().body("信用卡過期時間格式不正確！應為MM/YY格式。");
+            }
+
         }   else {
             return ResponseEntity.badRequest().body("不支持的付款方式！");
         }
