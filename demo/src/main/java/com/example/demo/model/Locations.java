@@ -27,4 +27,16 @@ public class Locations {
     @OneToMany(mappedBy = "marineSpeciesLocations")
     private Set<MarineSpecies> marineSpecies;
 
+    @AllArgsConstructor
+    @Data
+    public static class Tickets {
+
+        private String type;
+
+        private int quantity;
+
+        private int price;
+
+
+    }
 }

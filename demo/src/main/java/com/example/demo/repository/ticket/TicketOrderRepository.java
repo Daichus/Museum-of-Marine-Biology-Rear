@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.ticket;
 
 
 import com.example.demo.model.TicketOrder;

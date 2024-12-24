@@ -22,6 +22,9 @@ public class MarineSpeciesController {
   @Autowired
   MarineSpeciesService marineSpeciesService;
 
+  /**
+   *獲取所有圖片
+   */
   @GetMapping("/get")
   public List<MarineSpecies> getAllMarineSpecies() {
     return marineSpeciesService.getAllMarineSpecies();
