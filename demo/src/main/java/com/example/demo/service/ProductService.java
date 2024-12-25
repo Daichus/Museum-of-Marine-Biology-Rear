@@ -30,11 +30,18 @@ public class ProductService {
         return ResponseEntity.ok(orders);
     }
 
-    public ResponseEntity<?> getOrderByPhone (String phone) {
+    public ResponseEntity<?> getOrderByPhone (String phone, String verifyCode) {
         List<ProductOrder> orders = repository.findByPhone(phone);
+        ProductOrder matchingOrder = null;
 
-        if(!orders.isEmpty()) {
-            return ResponseEntity.ok(orders);
+        for(ProductOrder order : orders) {
+            if (verifyCode.equals(order.getVerifyCode().trim())) {
+                matchingOrder = order;
+                break;
+            }
+        }
+        if(matchingOrder != null) {
+            return ResponseEntity.ok(matchingOrder);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("找不到指定的訂單");
         }

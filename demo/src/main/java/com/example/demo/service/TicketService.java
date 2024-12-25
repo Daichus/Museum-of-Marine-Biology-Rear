@@ -40,7 +40,6 @@ public class TicketService {
         List<TicketOrder> orders = ticketOrderRepository.findByPhone(phone);
         TicketOrder matchingOrder = null;
         for (TicketOrder order : orders) {
-            System.out.println(order.getVerifyCode());
             if (verifyCode.equals(order.getVerifyCode().trim())) {
                 matchingOrder = order;
                 break;

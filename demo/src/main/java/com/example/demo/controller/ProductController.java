@@ -20,8 +20,8 @@ public class ProductController {
     }
 
     @GetMapping("/getOrder/{phone}")
-    public ResponseEntity<?> getOrderByPhone (@PathVariable String phone) {
-        return service.getOrderByPhone(phone);
+    public ResponseEntity<?> getOrderByPhone (@PathVariable String phone, String verifyCode) {
+        return service.getOrderByPhone(phone, verifyCode);
     }
 
     @PostMapping("/createOrder")
