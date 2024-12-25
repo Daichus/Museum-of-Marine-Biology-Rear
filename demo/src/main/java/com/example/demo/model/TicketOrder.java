@@ -37,9 +37,14 @@ public class TicketOrder {
    @Column(name="phone")
     private String phone;
 
+
+
    @JsonFormat(pattern = "yyyy-MM-dd")
    @Column(name="visit_time")
     private LocalDate visit_time;
+
+    @Column(name="verifyCode")
+    private String verifyCode;
 
     @OneToMany(mappedBy = "ticketOrder" , cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
