@@ -1,14 +1,19 @@
 package com.example.demo.service;
 
 
+import com.example.demo.model.Admin;
 import com.example.demo.model.FAQ;
 import com.example.demo.model.MarineSpecies;
 
 
+import com.example.demo.model.dto.LoginDto;
+import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.FAQRepository;
 import com.example.demo.repository.MarineSpeciesRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +27,27 @@ public class AdminService {
     @Autowired
     MarineSpeciesRepository msr;
 
+    @Autowired
+    AdminRepository adminRepository;
 
+
+    public ResponseEntity<?>login(LoginDto dto){
+        System.out.println(dto.getName());
+        Admin admin = adminRepository.findByName(dto.getName());
+
+        if(admin != null) {
+            if(admin.getPassword().equals(dto.getPassword())) {
+                return ResponseEntity.ok("登錄成功");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("密碼錯誤");
+            }
+        } else {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("找不到此用戶,請檢查名稱是否正確");
+        }
+
+
+    }
 
 
 
