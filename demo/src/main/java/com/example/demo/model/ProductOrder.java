@@ -38,6 +38,9 @@ public class ProductOrder {
     @Column(name="order_time")
     private LocalDateTime order_time;
 
+    @Column(name="verifyCode")
+    private String verifyCode;
+
     @OneToMany(mappedBy = "productOrder" , cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<OrderProducts> orderProducts;

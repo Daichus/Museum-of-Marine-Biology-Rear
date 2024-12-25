@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -65,7 +66,9 @@ public class ProductService {
         ProductOrder order = mapToEntity(dto);
         repository.save(order);
         if (paymentInfo.getEmail() != null) {
-            notificationService.sendEmail(paymentInfo.getEmail(), "付款成功通知", "您的訂單已成功付款！");
+            String verifyCode = order.getVerifyCode();
+            String emailMessage = String.format("您的訂單已成功付款！\n驗證碼為：%s", verifyCode);
+            notificationService.sendEmail(paymentInfo.getEmail(), "付款成功通知", emailMessage);
         } else if (paymentInfo.getPhone() != null) {
             System.out.println("向電話 " + paymentInfo.getPhone() + " 發送短信通知：您的訂單已成功付款！");
         }
@@ -78,6 +81,7 @@ public class ProductService {
         order.setName(dto.getPaymentInfo().getName());
         order.setId_number(dto.getPaymentInfo().getId_number());
         order.setOrder_time(LocalDateTime.now());
+        order.setVerifyCode(generateVerificationCode());
 
         if(dto.getPaymentInfo().getEmail() != null){
             order.setEmail(dto.getPaymentInfo().getEmail());
@@ -97,6 +101,20 @@ public class ProductService {
         order.setOrderProducts(orderProducts);
         return order;
     }
+
+    private static String generateVerificationCode() {
+        final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        final int codeLength = 20;
+        SecureRandom random = new SecureRandom();
+        StringBuilder verificationCode = new StringBuilder(codeLength);
+
+        for (int i = 0; i < codeLength; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            verificationCode.append(characters.charAt(randomIndex));
+        }
+        return verificationCode.toString();
+    }
+
 
 
 }

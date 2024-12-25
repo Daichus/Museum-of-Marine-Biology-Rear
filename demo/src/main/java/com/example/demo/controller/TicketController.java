@@ -14,9 +14,10 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
-    @GetMapping("/getOrder/{phone}")
-    public ResponseEntity<?> getOrderByPhone(@PathVariable String phone) {
-        return ticketService.getOrderByPhone(phone);
+    @PostMapping("/getOrder/{phone}")
+    public ResponseEntity<?> getOrderByPhone(@PathVariable String phone, @RequestBody String verifyCode) {
+        System.out.println(verifyCode);
+        return ticketService.getOrderByPhone(phone, verifyCode);
     }
 
      @PostMapping("/orderTicket")
