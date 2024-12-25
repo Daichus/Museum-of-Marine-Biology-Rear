@@ -6,8 +6,9 @@ import com.example.demo.model.ProductOrder;
 import com.example.demo.model.dto.CardInfoDto;
 import com.example.demo.model.dto.PaymentInfoDto;
 import com.example.demo.model.dto.ProductOrderDto;
-import com.example.demo.repository.ProductOrderRepository;
+import com.example.demo.repository.product.ProductOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,21 @@ public class ProductService {
 
     @Autowired
     NotificationService notificationService;
+
+    public ResponseEntity<?> getAllOrder() {
+        List<ProductOrder> orders = repository.findAll();
+        return ResponseEntity.ok(orders);
+    }
+
+    public ResponseEntity<?> getOrderByPhone (String phone) {
+        List<ProductOrder> orders = repository.findByPhone(phone);
+
+        if(!orders.isEmpty()) {
+            return ResponseEntity.ok(orders);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("找不到指定的訂單");
+        }
+    }
 
     public ResponseEntity<?> createOrder (ProductOrderDto dto) {
         PaymentInfoDto paymentInfo = dto.getPaymentInfo();

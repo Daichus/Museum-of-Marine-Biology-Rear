@@ -26,5 +26,7 @@ public class TicketOrderDTO {
 
     private List<Tickets> tickets;
 
+    private CardInfoDto cardInfo;
+
 
 }

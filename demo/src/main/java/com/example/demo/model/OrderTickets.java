@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class OrderTickets {
 
     @ManyToOne
     @JoinColumn(name = "ticket_order_id")
+    @JsonBackReference
     private TicketOrder ticketOrder;
 
     @Column(name="type")
