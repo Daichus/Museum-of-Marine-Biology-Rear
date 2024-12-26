@@ -19,8 +19,8 @@ public class ProductController {
         return service.getAllOrder();
     }
 
-    @PostMapping ("/getOrder/{phone}")
-    public ResponseEntity<?> getOrderByPhone (@PathVariable String phone, @RequestBody  String verifyCode) {
+    @PostMapping("/getOrder/{phone}")
+    public ResponseEntity<?> getOrderByPhone (@PathVariable String phone, @RequestBody String verifyCode) {
         return service.getOrderByPhone(phone, verifyCode);
     }
 
