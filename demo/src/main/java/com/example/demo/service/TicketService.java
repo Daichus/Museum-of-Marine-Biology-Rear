@@ -69,15 +69,15 @@ public class TicketService {
             return ResponseEntity.badRequest().body("信用卡過期時間格式不正確！應為MM/YY格式。");
         }
 
-        String idNumber = dto.getId_number();
-        if (idNumber == null || !idNumber.matches("^[A-Z]\\d{9}$")) {
-            return ResponseEntity.badRequest().body("身份證號格式不正確！應以一個大寫英文字母開頭，後接9個數字。");
-        }
-
-        String phone = dto.getPhone();
-        if (phone == null || !phone.matches("^\\d{8,9}$")) {
-            return ResponseEntity.badRequest().body("電話號碼格式不正確！應為8到9個數字。");
-        }
+//        String idNumber = dto.getId_number();
+//        if (idNumber == null || !idNumber.matches("^[A-Z]\\d{9}$")) {
+//            return ResponseEntity.badRequest().body("身份證號格式不正確！應以一個大寫英文字母開頭，後接9個數字。");
+//        }
+//
+//        String phone = dto.getPhone();
+//        if (phone == null || !phone.matches("^\\d{8,9}$")) {
+//            return ResponseEntity.badRequest().body("電話號碼格式不正確！應為8到9個數字。");
+//        }
 
         TicketOrder ticketOrder = new TicketOrder();
         ticketOrder.setEmail(dto.getEmail());
