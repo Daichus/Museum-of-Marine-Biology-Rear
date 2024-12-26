@@ -31,10 +31,12 @@ public class ProductService {
     }
 
     public ResponseEntity<?> getOrderByPhone (String phone, String verifyCode) {
+        System.out.println(verifyCode);
         List<ProductOrder> orders = repository.findByPhone(phone);
         ProductOrder matchingOrder = null;
 
         for(ProductOrder order : orders) {
+            System.out.print(order.getVerifyCode());
             if (verifyCode.equals(order.getVerifyCode().trim())) {
                 matchingOrder = order;
                 break;
@@ -68,6 +70,15 @@ public class ProductService {
 
         }   else {
             return ResponseEntity.badRequest().body("不支持的付款方式！");
+        }
+        String idNumber = dto.getPaymentInfo().getId_number();
+        if (idNumber == null || !idNumber.matches("^[A-Z]\\d{9}$")) {
+            return ResponseEntity.badRequest().body("身份證號格式不正確！應以一個大寫英文字母開頭，後接9個數字。");
+        }
+
+        String phone = dto.getPaymentInfo().getPhone();
+        if (phone == null || !phone.matches("^\\d{8,9}$")) {
+            return ResponseEntity.badRequest().body("電話號碼格式不正確！應為8到9個數字。");
         }
 
         ProductOrder order = mapToEntity(dto);
