@@ -24,9 +24,19 @@ public class TicketController {
     public ResponseEntity<?> orderTicket (@RequestBody TicketOrderDTO dto) {
          return ticketService.createTicketOrder(dto);
      }
+     @PutMapping("/editOrder/{order_id}")
+     public ResponseEntity<?> editOrder(@PathVariable int order_id, @RequestBody TicketOrderDTO dto) {
+        return ticketService.editOrder(order_id,dto);
+     }
+
 
      @GetMapping("/getAllOrder")
     public ResponseEntity<?>getAllOrder(){
          return ticketService.getAllOrder();
+     }
+
+     @DeleteMapping("/deleteOrder/{id}")
+    public ResponseEntity<?> deleteOrder(@PathVariable int id){
+         return ticketService.deleteOrder(id);
      }
 }

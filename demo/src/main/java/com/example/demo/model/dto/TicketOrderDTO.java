@@ -22,7 +22,7 @@ public class TicketOrderDTO {
 
     private String email;
 
-    private LocalDate date;
+    private LocalDate visit_time;
 
     private List<Tickets> tickets;
 
